@@ -24,6 +24,11 @@ Route::get('/about', [ViewsController::class, 'aboutView'])->name('aboutView');
 Route::get('/contact', [ViewsController::class, 'contactView'])->name('contactView');
 Route::get('/blog', [ViewsController::class, 'blogView'])->name('blogView');
 Route::get('/single', [ViewsController::class, 'singleView'])->name('singleView');
+Route::get('/administration', function () {
+    return view('admin/index');
+})
+// ->middleware(['auth', 'verified'])
+->name('dashboard');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
