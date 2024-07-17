@@ -24,6 +24,7 @@ Route::get('/about', [ViewsController::class, 'aboutView'])->name('aboutView');
 Route::get('/contact', [ViewsController::class, 'contactView'])->name('contactView');
 Route::get('/blog', [ViewsController::class, 'blogView'])->name('blogView');
 Route::get('/single', [ViewsController::class, 'singleView'])->name('singleView');
+Route::get('/notifications', [ViewsController::class, 'notifications'])->name('notifications');
 Route::get('/administration', function () {
     return view('admin/index');
 })

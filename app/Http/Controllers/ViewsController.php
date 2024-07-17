@@ -25,4 +25,8 @@ class ViewsController extends Controller
     public function servicesView(){
         return view("service");
     }
+
+    public function notifications() {
+        return view("admin/cards");
+    }
 }

@@ -53,79 +53,16 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="/">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Acceuil</span></a>
             </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="{{route('notifications')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                    <span>Notifications</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -300,15 +237,11 @@
                                 </a>
                             </div>
                         </li>
-
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -402,7 +335,6 @@
                             </div>
                         </div>
                     </div>
-                    
 
                     <!-- Content Row -->
                     <div class="container-fluid">
@@ -412,35 +344,28 @@
                         <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                             For more information about DataTables, please visit the <a target="_blank"
                                 href="https://datatables.net">official DataTables documentation</a>.</p>
-    
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Informations de Profil</h6>
                             </div>
                             <div class="card-body">
+
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
+                                                <th>Nom</th>
+                                                <th>Prénoms</th>
                                                 <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Description</th>
+                                                <th>Diplome actuelle</th>
+                                                <th>Nom Entreprise</th>
+                                                <th>Photo</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot>
+
                                         <tbody>
                                             <tr>
                                                 <td>Tiger Nixon</td>
@@ -448,7 +373,10 @@
                                                 <td>Edinburgh</td>
                                                 <td>61</td>
                                                 <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                                <td>Entreprise</td>
+                                                <td>Eazrez</td>
+                                                <th><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProfile" data-bs-whatever="@mdo">Modifier</button></th>
+
                                             </tr>
                                         </tbody>
                                     </table>
@@ -456,33 +384,121 @@
                             </div>
                         </div>
 
+                        {{-- Modal Profile --}}
+
+                        <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter des informations</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                      <label for="recipient-name" class="col-form-label">Nom:</label>
+                                      <input type="text" class="form-control" id="firstName" name="firstName">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="message-text" class="col-form-label">Pénoms:</label>
+                                      <input type="text" class="form-control" id="lastName" name="lastName">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Age:</label>
+                                        <input type="number" class="form-control" id="age" name="age">
+                                    </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Diplome Actuel:</label>
+                                        <input type="text" class="form-control" id="diploma" name="diploma">
+                                    </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Nom Entreprise:</label>
+                                        <input type="text" class="form-control" id="entreprise" name="entreprise">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Description:</label>
+                                        <textarea class="form-control" id="description" name="description"></textarea>
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Description:</label>
+                                        <input type="file" class="form-control" id="image" name="image">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Enrégistrer</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+{{-- 
+                          <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de Profil</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                      <label for="recipient-name" class="col-form-label">Nom:</label>
+                                      <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="message-text" class="col-form-label">Pénoms:</label>
+                                      <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Age:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Diplome Actuel:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Nom Entreprise:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Description:</label>
+                                        <textarea class="form-control" id="message-text"></textarea>
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Photo:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Modifier</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div> --}}
+
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Informations de Contact</h6>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Adresse</th>
+                                                <th>Ville</th>
+                                                <th>Boite Postale</th>
+                                                <th>Pays</th>
+                                                <th>Email</th>
+                                                <th>Numéro de Télephone</th>
+                                                <th>Poste de Travail</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             <tr>
                                                 <td>Tiger Nixon</td>
@@ -491,6 +507,134 @@
                                                 <td>61</td>
                                                 <td>2011/04/25</td>
                                                 <td>$320,800</td>
+                                                <td>$320,800</td>
+                                                <th><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editContact" data-bs-whatever="@mdo">Modifier</button></th>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="modal fade" id="addContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter des informations de contact</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                      <label for="message-text" class="col-form-label">Ville:</label>
+                                      <input type="text" class="form-control" id="city" name="city">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Boite Postale:</label>
+                                        <input type="text" class="form-control" id="bp" name="bp">
+                                    </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Pays:</label>
+                                        <input type="text" class="form-control" id="country" name="country">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Email:</label>
+                                        <input type="text" class="form-control" id="email" name="email">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Numéro de Téléphone:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Poste de Travail:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Enrégistrer</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="modal fade" id="editContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de contact</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Addresse:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Ville:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                          <label for="message-text" class="col-form-label">Boite Postale:</label>
+                                          <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                        <div class="mb-3">
+                                          <label for="message-text" class="col-form-label">Pays:</label>
+                                          <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                          <label for="message-text" class="col-form-label">Email:</label>
+                                          <input type="text" class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="message-text" class="col-form-label">Numéro de Téléphone:</label>
+                                          <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                          <label for="message-text" class="col-form-label">Poste de Travail:</label>
+                                          <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Modifier</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Informations de services</h6>
+                            </div>
+
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addServices" data-bs-whatever="@mdo">Ajouter un Service</button>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Type de service</th>
+                                                <th>Description du service</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>Tiger Nixon</td>
+                                                <td>System Architect</td>
+                                                <td>
+                                                    
+                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editServices" data-bs-whatever="@mdo">Modifier</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Supprimer</button>
+
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -498,41 +642,86 @@
                             </div>
                         </div>
 
+                        <div class="modal fade" id="addServices" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de contact</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Titre du Service</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Description du Service</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Ajouter</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal fade" id="editServices" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de contact</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Titre du Service:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Description du Service:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Modifier</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Informations des Collaborateurs</h6>
                             </div>
                             <div class="card-body">
+                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCollaborateurs" data-bs-whatever="@mdo">Ajouter un Collaborateur</button>
+
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Nom </th>
+                                                <th>Prénoms</th>
+                                                <th>Profession</th>
+                                                <th>image</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             <tr>
                                                 <td>Tiger Nixon</td>
                                                 <td>System Architect</td>
                                                 <td>Edinburgh</td>
                                                 <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editCollaborateurs" data-bs-whatever="@mdo">Modifier</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Supprimer</button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -540,41 +729,135 @@
                             </div>
                         </div>
 
+
+                          <div class="modal fade" id="addCollaborateurs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter les informations du Collaborateur</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Nom:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Prénom:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Profession:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Image:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Ajouter</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal fade" id="editCollaborateurs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations du collaborateur</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Nom:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Prénom:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Profession:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Image:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Modifier</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal fade" id="editServices" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de contact</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Titre du Service:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Description du Service:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Modifier</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Informations sur les réseaux sociaux</h6>
                             </div>
                             <div class="card-body">
+                                {{-- <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Ajouter</button> --}}
+
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Facebook</th>
+                                                <th>Linkedin</th>
+                                                <th>Instagram</th>
+                                                <th>Twitter</th>
+                                                <th>Modifier</th>
+                                        
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot>
+
                                         <tbody>
                                             <tr>
                                                 <td>Tiger Nixon</td>
                                                 <td>System Architect</td>
                                                 <td>Edinburgh</td>
                                                 <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSocialMedia" data-bs-whatever="@mdo">Modifier</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editSocialMedia" data-bs-whatever="@mdo">Supprimer</button>
+                                                </td>
+                                                
                                             </tr>
                                         </tbody>
                                     </table>
@@ -582,70 +865,250 @@
                             </div>
                         </div>
 
+
+                        <div class="modal fade" id="editSocialMedia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les liens</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">FaceBook:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">LinkedIn:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Instagram:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Twitter:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Modifier</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <div class="modal fade" id="editServices" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de contact</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Titre du Service:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Description du Service:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Modifier</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Informations sur le Blog</h6>
                             </div>
                             <div class="card-body">
+                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPost" data-bs-whatever="@mdo">Ajouter une Publication</button>
+
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Titre</th>
+                                                <th>Description</th>
+                                                <th>Date de publication</th>
+                                                <th>Image</th>
+                                                <th>Joindre un Fichier</th>
+                                                <th>Modifier</th>
+                                        
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot>
+
                                         <tbody>
                                             <tr>
                                                 <td>Tiger Nixon</td>
                                                 <td>System Architect</td>
                                                 <td>Edinburgh</td>
                                                 <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
+                                                <td>61</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Modifier</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Supprimer</button>
+                                                </td>
+                                                
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-    
+
+                        <div class="modal fade" id="addPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un Poste</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Titre du Poste:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Description du Poste:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Image Descriptive:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Joindre un fichier PDF:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Ajouter</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="editPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations du Post</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Titre du Poste:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Description du Poste:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Image Descriptive:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                      <div class="mb-3">
+                                        <label for="message-text" class="col-form-label">Joindre un fichier PDF:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                      </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                  <button type="button" class="btn btn-primary">Modifier</button>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+
+
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Informations sur les clients</h6>
+                            </div>
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addClient" data-bs-whatever="@mdo">Informations sur les clients</button>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Nom du client</th>
+                                                <th>Profession</th>
+                                                <th>Description</th>
+                                                <th>Image</th>
+                                                <th>Modifier</th>
+                                        
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>Tiger Nixon</td>
+                                                <td>System Architect</td>
+                                                <td>Edinburgh</td>
+                                                <td>61</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editClient" data-bs-whatever="@mdo">Modifier</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Supprimer</button>
+
+                                                </td>
+                                                
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <!-- /.container-fluid -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Open modal for @mdo</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat">Open modal for @fat</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Open modal for @getbootstrap</button>
+
+
+
                     
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- /.container-fluid -->
+
+                    <div class="modal fade" id="addClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout d'un client</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <form>
                               <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <label for="recipient-name" class="col-form-label">Nom du Client:</label>
                                 <input type="text" class="form-control" id="recipient-name">
                               </div>
                               <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                                <label for="message-text" class="col-form-label">Profession:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                              </div>
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Description:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                              </div>
+                              <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Image:</label>
+                                <input type="text" class="form-control" id="recipient-name">
                               </div>
                             </form>
                           </div>
@@ -655,7 +1118,42 @@
                           </div>
                         </div>
                       </div>
-                    </div>    
+                    </div>
+
+                    <div class="modal fade" id="editClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout d'un client</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="mb-3">
+                                  <label for="recipient-name" class="col-form-label">Nom du Client:</label>
+                                  <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="message-text" class="col-form-label">Profession:</label>
+                                  <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="recipient-name" class="col-form-label">Description:</label>
+                                  <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                                <div class="mb-3">
+                                  <label for="recipient-name" class="col-form-label">Image:</label>
+                                  <input type="text" class="form-control" id="recipient-name">
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Send message</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
 
                 </div>
@@ -668,7 +1166,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Porto Folio 2024</span>
                     </div>
                 </div>
             </footer>
