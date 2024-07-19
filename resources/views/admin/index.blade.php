@@ -259,7 +259,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
+                                                Services</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                                         </div>
                                         <div class="col-auto">
@@ -277,7 +277,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
+                                                Collaborateurs</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                                         </div>
                                         <div class="col-auto">
@@ -294,7 +294,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Postes
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -324,7 +324,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
+                                                Clients</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                         </div>
                                         <div class="col-auto">
@@ -346,328 +346,437 @@
                                 href="https://datatables.net">official DataTables documentation</a>.</p>
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Informations de Profil</h6>
-                            </div>
-                            <div class="card-body">
+                          <div class="card-header py-3">
+                              <h6 class="m-0 font-weight-bold text-primary">Informations de Profil</h6>
+                          </div>
+                          <div class="card-body">
+                              <div class="table-responsive">
+                                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                      <thead>
+                                          <tr>
+                                              <th>Nom</th>
+                                              <th>Prénoms</th>
+                                              <th>Age</th>
+                                              <th>Description</th>
+                                              <th>Diplome actuelle</th>
+                                              <th>Nom Entreprise</th>
+                                              <th>Image</th>
+                                              <th>Action</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          @foreach($profils as $profil)
+                                          <tr>
+                                              <td>{{ $profil->firstName }}</td>
+                                              <td>{{ $profil->lastName }}</td>
+                                              <td>{{ $profil->age }}</td>
+                                              <td>{{ $profil->description }}</td>
+                                              <td>{{ $profil->diploma }}</td>
+                                              <td>{{ $profil->entreprise }}</td>
+                                              <td><img src="{{ asset('storage/' . $profil->image) }}" alt="Profile Image" width="50" height="50"></td>
+                                              <td>
+                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProfile{{ $profil->id }}" data-bs-whatever="@mdo">Modifier</button>
+                                              </td>
+                                          </tr>
+                                          @endforeach
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      @foreach($profils as $profil)
+                      <!-- Modal Profile -->
+                      <div class="modal fade" id="editProfile{{ $profil->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier des informations</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form method="POST" action="{{ route('updateProfils', $profil->id) }}" enctype="multipart/form-data">
+                                          @csrf
+                                          @method('PUT')
+                                          <div class="mb-3">
+                                              <label for="firstName" class="col-form-label">Nom:</label>
+                                              <input type="text" class="form-control" id="firstName" name="firstName" value="{{ $profil->firstName }}">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="lastName" class="col-form-label">Prénoms:</label>
+                                              <input type="text" class="form-control" id="lastName" name="lastName" value="{{ $profil->lastName }}">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="age" class="col-form-label">Age:</label>
+                                              <input type="number" class="form-control" id="age" name="age" value="{{ $profil->age }}">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="diploma" class="col-form-label">Diplome Actuel:</label>
+                                              <input type="text" class="form-control" id="diploma" name="diploma" value="{{ $profil->diploma }}">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="entreprise" class="col-form-label">Nom Entreprise:</label>
+                                              <input type="text" class="form-control" id="entreprise" name="entreprise" value="{{ $profil->entreprise }}">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="description" class="col-form-label">Description:</label>
+                                              <textarea class="form-control" id="description" name="description">{{ $profil->description }}</textarea>
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="image" class="col-form-label">Image:</label>
+                                              <input type="file" class="form-control" id="image" name="image">
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                              <button type="submit" class="btn btn-primary">Enrégistrer</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      @endforeach
+                      
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Nom</th>
-                                                <th>Prénoms</th>
-                                                <th>Age</th>
-                                                <th>Description</th>
-                                                <th>Diplome actuelle</th>
-                                                <th>Nom Entreprise</th>
-                                                <th>Photo</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>Entreprise</td>
-                                                <td>Eazrez</td>
-                                                <th><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProfile" data-bs-whatever="@mdo">Modifier</button></th>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                      <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Informations de Contact</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Ville</th>
+                                            <th>Boite Postale</th>
+                                            <th>Pays</th>
+                                            <th>Email</th>
+                                            <th>Numéro de Télephone</th>
+                                            <th>Poste de Travail</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($contacts as $contact)
+                                        <tr>
+                                            <td>{{ $contact->city }}</td>
+                                            <td>{{ $contact->postalBox }}</td>
+                                            <td>{{ $contact->country }}</td>
+                                            <td>{{ $contact->email }}</td>
+                                            <td>{{ $contact->phone }}</td>
+                                            <td>{{ $contact->jobTitle }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editContact{{ $contact->id }}" data-bs-whatever="@mdo">Modifier</button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-
-                        {{-- Modal Profile --}}
-
-                        <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
+                    </div>
+                    
+                    @foreach($contacts as $contact)
+                    <!-- Modal Contact -->
+                    <div class="modal fade" id="editContact{{ $contact->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
                                 <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter des informations</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de contact</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                      <label for="recipient-name" class="col-form-label">Nom:</label>
-                                      <input type="text" class="form-control" id="firstName" name="firstName">
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="message-text" class="col-form-label">Pénoms:</label>
-                                      <input type="text" class="form-control" id="lastName" name="lastName">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Age:</label>
-                                        <input type="number" class="form-control" id="age" name="age">
-                                    </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Diplome Actuel:</label>
-                                        <input type="text" class="form-control" id="diploma" name="diploma">
-                                    </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Nom Entreprise:</label>
-                                        <input type="text" class="form-control" id="entreprise" name="entreprise">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Description:</label>
-                                        <textarea class="form-control" id="description" name="description"></textarea>
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Description:</label>
-                                        <input type="file" class="form-control" id="image" name="image">
-                                      </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Enrégistrer</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-{{-- 
-                          <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de Profil</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                      <label for="recipient-name" class="col-form-label">Nom:</label>
-                                      <input type="text" class="form-control" id="recipient-name">
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="message-text" class="col-form-label">Pénoms:</label>
-                                      <input type="text" class="form-control" id="recipient-name">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Age:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                    </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Diplome Actuel:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                    </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Nom Entreprise:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Description:</label>
-                                        <textarea class="form-control" id="message-text"></textarea>
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Photo:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                    </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Modifier</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div> --}}
-
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Informations de Contact</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Adresse</th>
-                                                <th>Ville</th>
-                                                <th>Boite Postale</th>
-                                                <th>Pays</th>
-                                                <th>Email</th>
-                                                <th>Numéro de Télephone</th>
-                                                <th>Poste de Travail</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                                <td>$320,800</td>
-                                                <th><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editContact" data-bs-whatever="@mdo">Modifier</button></th>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        
-
-                        <div class="modal fade" id="addContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter des informations de contact</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                      <label for="message-text" class="col-form-label">Ville:</label>
-                                      <input type="text" class="form-control" id="city" name="city">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Boite Postale:</label>
-                                        <input type="text" class="form-control" id="bp" name="bp">
-                                    </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Pays:</label>
-                                        <input type="text" class="form-control" id="country" name="country">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Email:</label>
-                                        <input type="text" class="form-control" id="email" name="email">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Numéro de Téléphone:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Poste de Travail:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                    </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Enrégistrer</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="modal fade" id="editContact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de contact</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Addresse:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Ville:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="message-text" class="col-form-label">Boite Postale:</label>
-                                          <input type="text" class="form-control" id="recipient-name">
-                                      </div>
+                                    <form method="POST" action="{{ route('updateContact', $contact->id) }}">
+                                        @csrf
+                                        @method('PUT')
                                         <div class="mb-3">
-                                          <label for="message-text" class="col-form-label">Pays:</label>
-                                          <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="message-text" class="col-form-label">Email:</label>
-                                          <input type="text" class="form-control" id="recipient-name">
+                                            <label for="city" class="col-form-label">Ville:</label>
+                                            <input type="text" class="form-control" id="city" name="city" value="{{ $contact->city }}">
                                         </div>
                                         <div class="mb-3">
-                                          <label for="message-text" class="col-form-label">Numéro de Téléphone:</label>
-                                          <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="message-text" class="col-form-label">Poste de Travail:</label>
-                                          <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Modifier</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Informations de services</h6>
-                            </div>
-
-                            <div class="card-body">
-                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addServices" data-bs-whatever="@mdo">Ajouter un Service</button>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Type de service</th>
-                                                <th>Description du service</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>
-                                                    
-                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editServices" data-bs-whatever="@mdo">Modifier</button>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Supprimer</button>
-
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                            <label for="postalBox" class="col-form-label">Boite Postale:</label>
+                                            <input type="text" class="form-control" id="postalBox" name="postalBox" value="{{ $contact->postalBox }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="country" class="col-form-label">Pays:</label>
+                                            <input type="text" class="form-control" id="country" name="country" value="{{ $contact->country }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="col-form-label">Email:</label>
+                                            <input type="text" class="form-control" id="email" name="email" value="{{ $contact->email }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phone" class="col-form-label">Numéro de Téléphone:</label>
+                                            <input type="text" class="form-control" id="phone" name="phone" value="{{ $contact->phone }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="jobTitle" class="col-form-label">Poste de Travail:</label>
+                                            <input type="text" class="form-control" id="jobTitle" name="jobTitle" value="{{ $contact->jobTitle }}">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Enrégistrer</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    @endforeach
 
-                        <div class="modal fade" id="addServices" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de contact</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Titre du Service</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Description du Service</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Ajouter</button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Informations de services</h6>
+    </div>
+    <div class="card-body">
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addServices" data-bs-whatever="@mdo">Ajouter un Service</button>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Type de service</th>
+                        <th>Description du service</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($services as $service)
+                    <tr>
+                        <td>{{ $service->title }}</td>
+                        <td>{{ $service->description }}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editServices{{ $service->id }}" data-bs-whatever="@mdo">Modifier</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteService{{ $service->id }}" data-bs-whatever="@mdo">Supprimer</button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Ajouter Service -->
+<div class="modal fade" id="addServices" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un Service</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('storeServices') }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="title" class="col-form-label">Titre du Service</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description du Service</label>
+                        <input type="text" class="form-control" id="description" name="description">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@foreach($services as $service)
+<!-- Modal Modifier Service -->
+<div class="modal fade" id="editServices{{ $service->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations du service</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('updateServices', $service->id) }}">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-3">
+                        <label for="title" class="col-form-label">Titre du Service:</label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{ $service->title }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description du Service:</label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{ $service->description }}">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Supprimer Service -->
+<div class="modal fade" id="deleteService{{ $service->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le Service</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('destroyServices', $service->id) }}">
+                    @csrf
+                    @method('DELETE')
+                    <p>Êtes-vous sûr de vouloir supprimer ce service ?</p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Informations des Collaborateurs</h6>
+  </div>
+  <div class="card-body">
+      <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCollaborateurs" data-bs-whatever="@mdo">Ajouter un Collaborateur</button>
+      <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th>Nom</th>
+                      <th>Prénoms</th>
+                      <th>Profession</th>
+                      <th>Image</th>
+                      <th>Action</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @foreach($collaborateurs as $collaborateur)
+                  <tr>
+                      <td>{{ $collaborateur->nom }}</td>
+                      <td>{{ $collaborateur->prenoms }}</td>
+                      <td>{{ $collaborateur->profession }}</td>
+                      <td><img src="{{ $collaborateur->image }}" alt="Image" style="width: 50px; height: 50px;"></td>
+                      <td>
+                          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editCollaborateurs{{ $collaborateur->id }}" data-bs-whatever="@mdo">Modifier</button>
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCollaborateur{{ $collaborateur->id }}" data-bs-whatever="@mdo">Supprimer</button>
+                      </td>
+                  </tr>
+                  @endforeach
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+<!-- Modal Ajouter Collaborateur -->
+<div class="modal fade" id="addCollaborateurs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter les informations du Collaborateur</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form method="POST" action="{{ route('storeCollaborateurs') }}">
+                  @csrf
+                  <div class="mb-3">
+                      <label for="nom" class="col-form-label">Nom:</label>
+                      <input type="text" class="form-control" id="nom" name="nom">
+                  </div>
+                  <div class="mb-3">
+                      <label for="prenoms" class="col-form-label">Prénom:</label>
+                      <input type="text" class="form-control" id="prenoms" name="prenoms">
+                  </div>
+                  <div class="mb-3">
+                      <label for="profession" class="col-form-label">Profession:</label>
+                      <input type="text" class="form-control" id="profession" name="profession">
+                  </div>
+                  <div class="mb-3">
+                      <label for="image" class="col-form-label">Image:</label>
+                      <input type="text" class="form-control" id="image" name="image">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                      <button type="submit" class="btn btn-primary">Ajouter</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+@foreach($collaborateurs as $collaborateur)
+<!-- Modal Modifier Collaborateur -->
+<div class="modal fade" id="editCollaborateurs{{ $collaborateur->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations du collaborateur</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form method="POST" action="{{ route('updateCollaborateurs', $collaborateur->id) }}">
+                  @csrf
+                  @method('PUT')
+                  <div class="mb-3">
+                      <label for="nom" class="col-form-label">Nom:</label>
+                      <input type="text" class="form-control" id="nom" name="nom" value="{{ $collaborateur->nom }}">
+                  </div>
+                  <div class="mb-3">
+                      <label for="prenoms" class="col-form-label">Prénom:</label>
+                      <input type="text" class="form-control" id="prenoms" name="prenoms" value="{{ $collaborateur->prenoms }}">
+                  </div>
+                  <div class="mb-3">
+                      <label for="profession" class="col-form-label">Profession:</label>
+                      <input type="text" class="form-control" id="profession" name="profession" value="{{ $collaborateur->profession }}">
+                  </div>
+                  <div class="mb-3">
+                      <label for="image" class="col-form-label">Image:</label>
+                      <input type="text" class="form-control" id="image" name="image" value="{{ $collaborateur->image }}">
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                      <button type="submit" class="btn btn-primary">Modifier</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Modal Supprimer Collaborateur -->
+<div class="modal fade" id="deleteCollaborateur{{ $collaborateur->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le Collaborateur</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form method="POST" action="{{ route('destroyCollaborateurs', $collaborateur->id) }}">
+                  @csrf
+                  @method('DELETE')
+                  <p>Êtes-vous sûr de vouloir supprimer ce collaborateur ?</p>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                      <button type="submit" class="btn btn-danger">Supprimer</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+@endforeach
+
                           <div class="modal fade" id="editServices" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -696,210 +805,103 @@
                         </div>
 
                         <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Informations des Collaborateurs</h6>
-                            </div>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCollaborateurs" data-bs-whatever="@mdo">Ajouter un Collaborateur</button>
-
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Nom </th>
-                                                <th>Prénoms</th>
-                                                <th>Profession</th>
-                                                <th>image</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editCollaborateurs" data-bs-whatever="@mdo">Modifier</button>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Supprimer</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-
-                          <div class="modal fade" id="addCollaborateurs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter les informations du Collaborateur</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Nom:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Prénom:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Profession:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Image:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Ajouter</button>
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-
-
-                        <div class="modal fade" id="editCollaborateurs" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations du collaborateur</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Nom:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Prénom:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Profession:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Image:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Modifier</button>
-                                </div>
-                              </div>
-                            </div>
+                          <div class="card-header py-3">
+                              <h6 class="m-0 font-weight-bold text-primary">Informations sur les réseaux sociaux</h6>
                           </div>
-                          <div class="modal fade" id="editServices" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations de contact</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Titre du Service:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Description du Service:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Modifier</button>
-                                </div>
+                          <div class="card-body">
+                              <div class="table-responsive">
+                                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                      <thead>
+                                          <tr>
+                                              <th>Facebook</th>
+                                              <th>LinkedIn</th>
+                                              <th>Instagram</th>
+                                              <th>Twitter</th>
+                                              <th>Action</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          @foreach($socialMediaInfos as $socialMedia)
+                                          <tr>
+                                              <td>{{ $socialMedia->facebook }}</td>
+                                              <td>{{ $socialMedia->linkedin }}</td>
+                                              <td>{{ $socialMedia->instagram }}</td>
+                                              <td>{{ $socialMedia->twitter }}</td>
+                                              <td>
+                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSocialMedia{{ $socialMedia->id }}" data-bs-whatever="@mdo">Modifier</button>
+                                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteSocialMedia{{ $socialMedia->id }}" data-bs-whatever="@mdo">Supprimer</button>
+                                              </td>
+                                          </tr>
+                                          @endforeach
+                                      </tbody>
+                                  </table>
                               </div>
-                            </div>
-                        </div>
-
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Informations sur les réseaux sociaux</h6>
-                            </div>
-                            <div class="card-body">
-                                {{-- <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Ajouter</button> --}}
-
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Facebook</th>
-                                                <th>Linkedin</th>
-                                                <th>Instagram</th>
-                                                <th>Twitter</th>
-                                                <th>Modifier</th>
-                                        
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editSocialMedia" data-bs-whatever="@mdo">Modifier</button>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editSocialMedia" data-bs-whatever="@mdo">Supprimer</button>
-                                                </td>
-                                                
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="modal fade" id="editSocialMedia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les liens</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">FaceBook:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">LinkedIn:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Instagram:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Twitter:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Modifier</button>
-                                </div>
-                              </div>
-                            </div>
                           </div>
+                      </div>
+                      
+                      @foreach($socialMediaInfos as $socialMedia)
+                      <!-- Modal Modifier Réseaux Sociaux -->
+                      <div class="modal fade" id="editSocialMedia{{ $socialMedia->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les liens</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form method="POST" action="{{ route('updateSocialMedia', $socialMedia->id) }}">
+                                          @csrf
+                                          @method('PUT')
+                                          <div class="mb-3">
+                                              <label for="facebook" class="col-form-label">Facebook:</label>
+                                              <input type="text" class="form-control" id="facebook" name="facebook" value="{{ $socialMedia->facebook }}">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="linkedin" class="col-form-label">LinkedIn:</label>
+                                              <input type="text" class="form-control" id="linkedin" name="linkedin" value="{{ $socialMedia->linkedin }}">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="instagram" class="col-form-label">Instagram:</label>
+                                              <input type="text" class="form-control" id="instagram" name="instagram" value="{{ $socialMedia->instagram }}">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="twitter" class="col-form-label">Twitter:</label>
+                                              <input type="text" class="form-control" id="twitter" name="twitter" value="{{ $socialMedia->twitter }}">
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                              <button type="submit" class="btn btn-primary">Modifier</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <!-- Modal Supprimer Réseaux Sociaux -->
+                      <div class="modal fade" id="deleteSocialMedia{{ $socialMedia->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer les informations du réseau social</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form method="POST" action="{{ route('destroySocialMedia', $socialMedia->id) }}">
+                                          @csrf
+                                          @method('DELETE')
+                                          <p>Êtes-vous sûr de vouloir supprimer ces informations ?</p>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                              <button type="submit" class="btn btn-danger">Supprimer</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      @endforeach
+                      
                         <div class="modal fade" id="editServices" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
@@ -929,231 +931,283 @@
 
 
                         <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Informations sur le Blog</h6>
-                            </div>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPost" data-bs-whatever="@mdo">Ajouter une Publication</button>
-
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Titre</th>
-                                                <th>Description</th>
-                                                <th>Date de publication</th>
-                                                <th>Image</th>
-                                                <th>Joindre un Fichier</th>
-                                                <th>Modifier</th>
-                                        
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>61</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Modifier</button>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Supprimer</button>
-                                                </td>
-                                                
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="addPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un Poste</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Titre du Poste:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Description du Poste:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Image Descriptive:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Joindre un fichier PDF:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Ajouter</button>
-                                </div>
+                          <div class="card-header py-3">
+                              <h6 class="m-0 font-weight-bold text-primary">Informations sur le Blog</h6>
+                          </div>
+                          <div class="card-body">
+                              <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addPost" data-bs-whatever="@mdo">Ajouter une Publication</button>
+                      
+                              <div class="table-responsive">
+                                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                      <thead>
+                                          <tr>
+                                              <th>Titre</th>
+                                              <th>Description</th>
+                                              <th>Date de publication</th>
+                                              <th>Image</th>
+                                              <th>Joindre un Fichier</th>
+                                              <th>Action</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          @foreach($blogPosts as $post)
+                                          <tr>
+                                              <td>{{ $post->title }}</td>
+                                              <td>{{ $post->description }}</td>
+                                              <td>{{ $post->published_at }}</td>
+                                              <td><img src="{{ asset('storage/' . $post->image) }}" alt="Image" width="50"></td>
+                                              <td>{{ $post->file ? 'Oui' : 'Non' }}</td>
+                                              <td>
+                                                  <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editPost{{ $post->id }}" data-bs-whatever="@mdo">Modifier</button>
+                                                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletePost{{ $post->id }}" data-bs-whatever="@mdo">Supprimer</button>
+                                              </td>
+                                          </tr>
+                                          @endforeach
+                                      </tbody>
+                                  </table>
                               </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="editPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
+                          </div>
+                      </div>
+                      
+                      <!-- Modal Ajouter une Publication -->
+                      <div class="modal fade" id="addPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
                               <div class="modal-content">
-                                <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations du Post</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Titre du Poste:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Description du Poste:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Image Descriptive:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                      <div class="mb-3">
-                                        <label for="message-text" class="col-form-label">Joindre un fichier PDF:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
-                                      </div>
-                                  </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                                  <button type="button" class="btn btn-primary">Modifier</button>
-                                </div>
+                                  <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un Poste</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form method="POST" action="{{ route('storeBlog') }}" enctype="multipart/form-data">
+                                          @csrf
+                                          <div class="mb-3">
+                                              <label for="title" class="col-form-label">Titre du Poste:</label>
+                                              <input type="text" class="form-control" id="title" name="title">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="description" class="col-form-label">Description du Poste:</label>
+                                              <textarea class="form-control" id="description" name="description"></textarea>
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="image" class="col-form-label">Image Descriptive:</label>
+                                              <input type="file" class="form-control" id="image" name="image">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="file" class="col-form-label">Joindre un fichier PDF:</label>
+                                              <input type="file" class="form-control" id="file" name="file">
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                              <button type="submit" class="btn btn-primary">Ajouter</button>
+                                          </div>
+                                      </form>
+                                  </div>
                               </div>
-                            </div>
+                          </div>
+                      </div>
+                      
+                      @foreach($blogPosts as $post)
+                      <!-- Modal Modifier une Publication -->
+                      <div class="modal fade" id="editPost{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations du Post</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form method="POST" action="{{ route('updateBlog', $post->id) }}" enctype="multipart/form-data">
+                                          @csrf
+                                          @method('PUT')
+                                          <div class="mb-3">
+                                              <label for="title" class="col-form-label">Titre du Poste:</label>
+                                              <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="description" class="col-form-label">Description du Poste:</label>
+                                              <textarea class="form-control" id="description" name="description">{{ $post->description }}</textarea>
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="image" class="col-form-label">Image Descriptive:</label>
+                                              <input type="file" class="form-control" id="image" name="image">
+                                          </div>
+                                          <div class="mb-3">
+                                              <label for="file" class="col-form-label">Joindre un fichier PDF:</label>
+                                              <input type="file" class="form-control" id="file" name="file">
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                              <button type="submit" class="btn btn-primary">Modifier</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <!-- Modal Supprimer une Publication -->
+                      <div class="modal fade" id="deletePost{{ $post->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer la Publication</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                      <form method="POST" action="{{ route('destroyBlog', $post->id) }}">
+                                          @csrf
+                                          @method('DELETE')
+                                          <p>Êtes-vous sûr de vouloir supprimer cette publication ?</p>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                              <button type="submit" class="btn btn-danger">Supprimer</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      @endforeach
+                      
+
+
+                      <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Informations sur les clients</h6>
                         </div>
-
-
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Informations sur les clients</h6>
-                            </div>
-                            <div class="card-body">
-                                <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addClient" data-bs-whatever="@mdo">Informations sur les clients</button>
-
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Nom du client</th>
-                                                <th>Profession</th>
-                                                <th>Description</th>
-                                                <th>Image</th>
-                                                <th>Modifier</th>
-                                        
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editClient" data-bs-whatever="@mdo">Modifier</button>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#editPost" data-bs-whatever="@mdo">Supprimer</button>
-
-                                                </td>
-                                                
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
+                        <div class="card-body">
+                            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addClient" data-bs-whatever="@mdo">Ajouter un Client</button>
                     
-                    <!-- /.container-fluid -->
-
-                    <div class="modal fade" id="addClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout d'un client</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <form>
-                              <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Nom du Client:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                              </div>
-                              <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Profession:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                              </div>
-                              <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Description:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                              </div>
-                              <div class="mb-3">
-                                <label for="recipient-name" class="col-form-label">Image:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                              </div>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Send message</button>
-                          </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom du client</th>
+                                            <th>Profession</th>
+                                            <th>Description</th>
+                                            <th>Image</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($clients as $client)
+                                        <tr>
+                                            <td>{{ $client->name }}</td>
+                                            <td>{{ $client->profession }}</td>
+                                            <td>{{ $client->description }}</td>
+                                            <td><img src="{{ asset('storage/' . $client->image) }}" alt="Image" width="50"></td>
+                                            <td>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editClient{{ $client->id }}" data-bs-whatever="@mdo">Modifier</button>
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteClient{{ $client->id }}" data-bs-whatever="@mdo">Supprimer</button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                      </div>
                     </div>
-
-                    <div class="modal fade" id="editClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    
+                    <!-- Modal Ajouter un Client -->
+                    <div class="modal fade" id="addClient" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout d'un client</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ajout d'un client</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="{{ route('storeClients') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <label for="name" class="col-form-label">Nom du Client:</label>
+                                            <input type="text" class="form-control" id="name" name="name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="profession" class="col-form-label">Profession:</label>
+                                            <input type="text" class="form-control" id="profession" name="profession">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="description" class="col-form-label">Description:</label>
+                                            <textarea class="form-control" id="description" name="description"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="image" class="col-form-label">Image:</label>
+                                            <input type="file" class="form-control" id="image" name="image">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                              <form>
-                                <div class="mb-3">
-                                  <label for="recipient-name" class="col-form-label">Nom du Client:</label>
-                                  <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="message-text" class="col-form-label">Profession:</label>
-                                  <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="recipient-name" class="col-form-label">Description:</label>
-                                  <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="mb-3">
-                                  <label for="recipient-name" class="col-form-label">Image:</label>
-                                  <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                              </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Send message</button>
-                            </div>
-                          </div>
                         </div>
-                      </div>
+                    </div>
+                    
+                    @foreach($clients as $client)
+                    <!-- Modal Modifier un Client -->
+                    <div class="modal fade" id="editClient{{ $client->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier les informations du client</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="{{ route('updateClients', $client->id) }}" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="mb-3">
+                                            <label for="name" class="col-form-label">Nom du Client:</label>
+                                            <input type="text" class="form-control" id="name" name="name" value="{{ $client->name }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="profession" class="col-form-label">Profession:</label>
+                                            <input type="text" class="form-control" id="profession" name="profession" value="{{ $client->profession }}">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="description" class="col-form-label">Description:</label>
+                                            <textarea class="form-control" id="description" name="description">{{ $client->description }}</textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="image" class="col-form-label">Image:</label>
+                                            <input type="file" class="form-control" id="image" name="image">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-primary">Modifier</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal Supprimer un Client -->
+                    <div class="modal fade" id="deleteClient{{ $client->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Supprimer le client</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="{{ route('destroyClients', $client->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    
 
 
                 </div>
@@ -1197,7 +1251,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="">Logout</a>
                 </div>
             </div>
         </div>

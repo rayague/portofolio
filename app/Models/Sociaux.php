@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Sociaux extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'facebook',
+        'linkedin',
+        'instagram',
+    ];
 }
