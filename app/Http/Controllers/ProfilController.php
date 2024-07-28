@@ -21,7 +21,7 @@ class ProfilController extends Controller
         $profil->age = $request->input('age');
         $profil->diploma = $request->input('diploma');
         $profil->entreprise = $request->input('entreprise');
-        $profil->description = $request->input('description');
+        $profil->description = $request->input('description');  
         
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');

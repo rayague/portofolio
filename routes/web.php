@@ -25,6 +25,7 @@ use App\Http\Controllers\SociauxController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\CollaborateursController;
 use App\Http\Controllers\ServicesController;
+use App\Models\notification;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,15 @@ use App\Http\Controllers\ServicesController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $blogPosts = Blog::all();
+    $clients = Clients::all();
+    $collaborateurs = Collaborateurs::all();
+    $contacts = Contact::all();
+    $counters = Counter::all();
+    $profils = Profil::all();
+    $services = Services::all();
+    $sociauxes = Sociaux::all();
+    return view('index' , compact('profils', 'blogPosts', 'clients', 'collaborateurs', 'contacts', 'counters', 'services', 'sociauxes') );
 });
 
 Route::get('/services', [ViewsController::class, 'servicesView'])->name('servicesView');
@@ -49,17 +58,18 @@ Route::get('/single', [ViewsController::class, 'singleView'])->name('singleView'
 Route::get('/notifications', [ViewsController::class, 'notifications'])->name('notifications');
 
 Route::get('/administration', function () {
-    $profils = Profil::all();
-    $blogs = Blog::all();
+    $blogPosts = Blog::all();
     $clients = Clients::all();
-    // dd($clients); 
     $collaborateurs = Collaborateurs::all();
     $contacts = Contact::all();
     $counters = Counter::all();
+    $profils = Profil::all();
     $services = Services::all();
     $sociauxes = Sociaux::all();
+    // dd($counters);
+
     return view('admin.index'
-    , compact('profils', 'blogs', 'clients', 'collaborateurs', 'contacts', 'counters', 'services', 'sociauxes') 
+    , compact('profils', 'blogPosts', 'clients', 'collaborateurs', 'contacts', 'counters', 'services', 'sociauxes') 
 );
 })
 // ->middleware(['auth', 'verified'])
@@ -68,57 +78,57 @@ Route::get('/administration', function () {
 // Routes pour les blogs
 // Routes pour les blogs
 // Route::get('/blogs', [BlogController::class, 'index']);
-Route::post('/blogs', [BlogController::class, 'storeBlog']);
-Route::put('/blogs/{id}', [BlogController::class, 'updateBlog']);
-Route::delete('/blogs/{id}', [BlogController::class, 'destroyBlog']);
+Route::post('/blogs', [BlogController::class, 'store'])->name('storeBlog');
+Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('updateBlog');
+Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('destroyBlog');
 
 // Routes pour les clients
 // Route::get('/clients', [ClientController::class, 'index']);
-Route::post('/clients', [ClientController::class, 'storeClients']);
-Route::put('/clients/{id}', [ClientController::class, 'updateClients']);
-Route::delete('/clients/{id}', [ClientController::class, 'destroyClients']);
+Route::post('/clients', [ClientController::class, 'store'])->name('storeClients');
+Route::put('/clients/{id}', [ClientController::class, 'update'])->name('updateClients');
+Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('destroyClients');
 
 // Routes pour les compteurs
 // Route::get('/counters', [CounterController::class, 'index']);
-Route::post('/counters', [CounterController::class, 'store']);
-Route::put('/counters/{id}', [CounterController::class, 'update']);
-Route::delete('/counters/{id}', [CounterController::class, 'destroy']);
+Route::post('/counters', [CounterController::class, 'store'])->name('storeCounter');
+Route::put('/counters/{id}', [CounterController::class, 'update'])->name('updateCounter');
+Route::delete('/counters/{id}', [CounterController::class, 'destroy'])->name('destroyCounter');
 
 // Routes pour les notifications
 // Route::get('/notifications', [NotificationController::class, 'index']);
-Route::post('/notifications', [NotificationController::class, 'store']);
-Route::put('/notifications/{id}', [NotificationController::class, 'update']);
-Route::delete('/notifications/{id}', [NotificationController::class, 'destroy']);
+Route::post('/notifications', [NotificationController::class, 'store'])->name('storeNotifications');
+Route::put('/notifications/{id}', [NotificationController::class, 'update'])->name('updateNotifications');
+Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('destroyNotifications');
 
 // Routes pour les profils
 // Route::get('/profils', [ProfilController::class, 'index']);
-Route::post('/profils', [ProfilController::class, 'storeProfils']);
-Route::put('/profils/{id}', [ProfilController::class, 'updateProfils']);
-Route::delete('/profils/{id}', [ProfilController::class, 'destroyProfils']);
+Route::post('/profils', [ProfilController::class, 'store'])->name('storeProfils');
+Route::put('/profils/{id}', [ProfilController::class, 'update'])->name('updateProfils');
+Route::delete('/profils/{id}', [ProfilController::class, 'destroy'])->name('destroyProfils');
 
 // Routes pour les contacts
 // Route::get('/contacts', [ContactController::class, 'index']);
-Route::post('/contacts', [ContactController::class, 'storeContact']);
-Route::put('/contacts/{id}', [ContactController::class, 'updateContact']);
-Route::delete('/contacts/{id}', [ContactController::class, 'destroyContact']);
+Route::post('/contacts', [ContactController::class, 'store'])->name('storeContact');
+Route::put('/contacts/{id}', [ContactController::class, 'update'])->name('updateContact');
+Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('destroyContact');
 
 // Routes pour les services
 // Route::get('/services', [ServicesController::class, 'index']);
-Route::post('/services', [ServicesController::class, 'storeServices']);
-Route::put('/services/{id}', [ServicesController::class, 'updateServices']);
-Route::delete('/services/{id}', [ServicesController::class, 'destroyServices']);
+Route::post('/services', [ServicesController::class, 'store'])->name('storeServices');
+Route::put('/services/{id}', [ServicesController::class, 'update'])->name('updateServices');
+Route::delete('/services/{id}', [ServicesController::class, 'destroy'])->name('destroyServices');
 
 // Routes pour les sociaux
 // Route::get('/sociaux', [SociauxController::class, 'index']);
-Route::post('/sociaux', [SociauxController::class, 'store']);
-Route::put('/sociaux/{id}', [SociauxController::class, 'update']);
-Route::delete('/sociaux/{id}', [SociauxController::class, 'destroy']);
+Route::post('/sociaux', [SociauxController::class, 'store'])->name('storeSocialMedia');
+Route::put('/sociaux/{id}', [SociauxController::class, 'update'])->name('updateSocialMedia');
+Route::delete('/sociaux/{id}', [SociauxController::class, 'destroy'])->name('destroySocialMedia');
 
 // Routes pour les collaborateurs
 // Route::get('/collaborateurs', [CollaborateursController::class, 'index']);
-Route::post('/collaborateurs', [CollaborateursController::class, 'storeCollaborateurs']);
-Route::put('/collaborateurs/{id}', [CollaborateursController::class, 'updateCollaborateurs']);
-Route::delete('/collaborateurs/{id}', [CollaborateursController::class, 'destroyCollaborateurs']);
+Route::post('/collaborateurs', [CollaborateursController::class, 'store'])->name('storeCollaborateurs');
+Route::put('/collaborateurs/{id}', [CollaborateursController::class, 'update'])->name('updateCollaborateurs');
+Route::delete('/collaborateurs/{id}', [CollaborateursController::class, 'destroy'])->name('destroyCollaborateurs');
 
 // Route::resource('clients', ClientController::class);
 // Route::resource('blog', BlogController::class);

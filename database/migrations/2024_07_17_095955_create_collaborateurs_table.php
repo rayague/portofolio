@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('collaborateurs', function (Blueprint $table) {
             $table->id();
-            $table->string('firstName');
-            $table->string('lastName');
+            $table->string('nom');
+            $table->string('prenoms');
             $table->string('profession');
             $table->string('image');
             $table->boolean('status')->default(true);

@@ -2,7 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Profil;
+use App\Models\Clients;
+use App\Models\Contact;
+use App\Models\Counter;
+use App\Models\Sociaux;
+use App\Models\Services;
+use App\Models\notification;
 use Illuminate\Http\Request;
+use App\Models\Collaborateurs;
 
 class ViewsController extends Controller
 {
@@ -11,22 +20,61 @@ class ViewsController extends Controller
     }
 
     public function aboutView(){
-        return view("about");
+        $blogPosts = Blog::all();
+        $clients = Clients::all();
+        $collaborateurs = Collaborateurs::all();
+        $contacts = Contact::all();
+        $counters = Counter::all();
+        $profils = Profil::all();
+        $services = Services::all();
+        $sociauxes = Sociaux::all();
+        return view("about", compact('profils', 'blogPosts', 'clients', 'collaborateurs', 'contacts', 'counters', 'services', 'sociauxes') 
+    );
     }
 
     public function contactView(){
-        return view("contact");
+        $blogPosts = Blog::all();
+        $clients = Clients::all();
+        $collaborateurs = Collaborateurs::all();
+        $contacts = Contact::all();
+        $counters = Counter::all();
+        $profils = Profil::all();
+        $services = Services::all();
+        $sociauxes = Sociaux::all();
+        return view("contact", compact('profils', 'blogPosts', 'clients', 'collaborateurs', 'contacts', 'counters', 'services', 'sociauxes') 
+    );
     }
 
     public function blogView(){
-        return view("blog");
+        $blogPosts = Blog::all();
+        $clients = Clients::all();
+        $collaborateurs = Collaborateurs::all();
+        $contacts = Contact::all();
+        $counters = Counter::all();
+        $profils = Profil::all();
+        $services = Services::all();
+        $sociauxes = Sociaux::all();
+        return view("blog", compact('profils', 'blogPosts', 'clients', 'collaborateurs', 'contacts', 'counters', 'services', 'sociauxes') 
+    );
     }
 
     public function servicesView(){
-        return view("service");
+        $blogPosts = Blog::all();
+        $clients = Clients::all();
+        $collaborateurs = Collaborateurs::all();
+        $contacts = Contact::all();
+        $counters = Counter::all();
+        $profils = Profil::all();
+        $services = Services::all();
+        $sociauxes = Sociaux::all();
+        return view("service", compact('profils', 'blogPosts', 'clients', 'collaborateurs', 'contacts', 'counters', 'services', 'sociauxes') 
+    );
     }
 
     public function notifications() {
-        return view("admin/cards");
+        
+        $notifications = notification::all();
+
+        return view("admin/cards", compact('notifications'));
     }
 }

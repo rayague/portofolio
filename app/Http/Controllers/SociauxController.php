@@ -21,7 +21,7 @@ $sociaux->linkedin = $request->input('linkedin');
 $sociaux->instagram = $request->input('instagram');
 $sociaux->save();
 
-return response()->json(['message' => 'Sociaux Added Successfully']);
+return redirect()->back()->with('status', 'Service Added Successfully');
 }
 
 public function update(Request $request, $id)
@@ -32,7 +32,7 @@ $sociaux->linkedin = $request->input('linkedin');
 $sociaux->instagram = $request->input('instagram');
 $sociaux->save();
 
-return response()->json(['message' => 'Sociaux Updated Successfully']);
+return redirect()->back()->with('status', 'Service Updated Successfully');
 }
 
 public function destroy($id)
@@ -40,6 +40,6 @@ public function destroy($id)
 $sociaux = Sociaux::findOrFail($id);
 $sociaux->delete();
 
-return response()->json(['message' => 'Sociaux Deleted Successfully']);
+return redirect()->back()->with('status', 'Service Deleted Successfully');
 }
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>DotCom - Creative Agency Website Template</title>
+    <title>PortoFolio . Blog</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -38,10 +38,10 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
-                        <a href="/" class="nav-item nav-link">Home</a>
-                        <a href="{{ route('aboutView') }}" class="nav-item nav-link">About</a>
+                        <a href="/" class="nav-item nav-link">Acceuil</a>
+                        <a href="{{ route('aboutView') }}" class="nav-item nav-link">À propos</a>
                         <a href="{{ route('servicesView') }}" class="nav-item nav-link">Services</a>
-                        <a href="{{ route('blogView') }}" class="nav-item nav-link active">Blog Grid</a>
+                        <a href="{{ route('blogView') }}" class="nav-item nav-link active">Blog</a>
                         <a href="{{ route('contactView') }}" class="nav-item nav-link">Contact</a>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
     <div class="container-fluid page-header d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5 mb-5">
         <h1 class="display-4 text-white mb-3 mt-0 mt-lg-5">Blog</h1>
         <div class="d-inline-flex text-white">
-            <p class="m-0"><a class="text-white" href="">Home</a></p>
+            <p class="m-0"><a class="text-white" href="">Acceuil</a></p>
             <p class="m-0 px-2">/</p>
             <p class="m-0">Blog</p>
         </div>
@@ -162,7 +162,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12">
                         <nav aria-label="Page navigation">
                           <ul class="pagination pagination-lg justify-content-center mb-0">
@@ -184,28 +184,16 @@
                           </ul>
                         </nav>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <!-- Blog Grid End -->
 
             <!-- Sidebar Start -->
             <div class="col-lg-4 mt-5 mt-lg-0">
-                <!-- Search Form Start -->
-                <div class="mb-5">
-                    <form action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control form-control-lg" placeholder="Keyword">
-                            <div class="input-group-append">
-                                <span class="input-group-text bg-transparent text-primary"><i
-                                        class="fa fa-search"></i></span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
                 <!-- Search Form End -->
 
                 <!-- Category Start -->
-                <div class="mb-5">
+                {{-- <div class="mb-5">
                     <h3 class="font-weight-bold mb-4">Categories</h3>
                     <ul class="list-group">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -229,11 +217,11 @@
                             <span class="badge badge-primary badge-pill">98</span>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
                 <!-- Category End -->
 
                 <!-- Recent Post Start -->
-                <div class="mb-5">
+                {{-- <div class="mb-5">
                     <h3 class="font-weight-bold mb-4">Recent Post</h3>
                     <div class="d-flex mb-3">
                         <img class="img-fluid" src="{{ asset('template/img/blog-1.jpg') }}" style="width: 80px; height: 80px;" alt="">
@@ -265,7 +253,7 @@
                             <a class="text-secondary font-weight-semi-bold" href="">Lorem ipsum dolor sit amet consec adipis elit</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Recent Post End -->
 
                 <!-- Image Start -->
@@ -274,18 +262,6 @@
                 </div>
                 <!-- Image End -->
 
-                <!-- Tags Start -->
-                <div class="mb-5">
-                    <h3 class="font-weight-bold mb-4">Tag Cloud</h3>
-                    <div class="d-flex flex-wrap m-n1">
-                        <a href="" class="btn btn-outline-primary m-1">Design</a>
-                        <a href="" class="btn btn-outline-primary m-1">Development</a>
-                        <a href="" class="btn btn-outline-primary m-1">Marketing</a>
-                        <a href="" class="btn btn-outline-primary m-1">SEO</a>
-                        <a href="" class="btn btn-outline-primary m-1">Writing</a>
-                        <a href="" class="btn btn-outline-primary m-1">Consulting</a>
-                    </div>
-                </div>
                 <!-- Tags End -->
 
                 <!-- Image Start -->
@@ -316,21 +292,23 @@
                 <a href="/" class="navbar-brand">
                     <h1 class="m-0 mt-n2 text-white display-4"><span class="text-primary">P</span>orto<span class="text-primary">F</span>olio</h1>
                 </a>
-                <p>Volup amet magna clita tempor. Tempor sea eos vero ipsum. Lorem lorem sit sed elitr sed kasd et</p>
+                <p>Nous nous spécialisons dans la création de contenus visuels impressionnants qui capturent l'essence de votre marque. Notre équipe est dédiée à fournir des designs de haute qualité qui résonnent avec votre audience.</p>
+                @foreach($sociauxes as $socialMedia)
                 <div class="d-flex justify-content-start mt-4">
-                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 38px; height: 38px;" href="#"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 38px; height: 38px;" href="{{ $socialMedia->facebook }}"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 38px; height: 38px;" href="{{ $socialMedia->linkedin }}"><i class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0" style="width: 38px; height: 38px;" href="{{ $socialMedia->instagram }}"><i class="fab fa-instagram"></i></a>
                 </div>
+                @endforeach
             </div>
-
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h5 class="font-weight-bold text-primary mb-4">Get In Touch</h5>
-                <p>Dolor clita stet nonumy clita diam vero, et et ipsum diam labore</p>
-                <p><i class="fa fa-map-marker-alt text-primary mr-2"></i>123 Street, New York, USA</p>
-                <p><i class="fa fa-phone-alt text-primary mr-2"></i>+012 345 67890</p>
-                <p><i class="fa fa-envelope text-primary mr-2"></i>info@example.com</p>
+            <div class="col-lg-3 col-md-6 mb-5 float-right">
+                <h5 class="font-weight-bold text-primary mb-4">Contactez-nous</h5>
+                <p>N'hésitez pas à nous contacter pour toute demande ou collaboration. Nous sommes toujours là pour vous aider et répondons rapidement à vos messages.</p>
+                @foreach($contacts as $contact)
+                <p><i class="fa fa-map-marker-alt text-primary mr-2"></i>{{ $contact->bp }}{{ $contact->city }}, {{ $contact->country }}</p>
+                <p><i class="fa fa-phone-alt text-primary mr-2"></i>{{ $contact->telephone }}</p>
+                <p><i class="fa fa-envelope text-primary mr-2"></i>{{ $contact->email }}</p>
+                @endforeach
             </div>
         </div>
     </div>

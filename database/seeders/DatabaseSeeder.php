@@ -26,9 +26,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Blog::create([
 
                 'title' => 'Advanced JavaScript Techniques',
-                'description' => 'Explore advanced techniques in JavaScript for better code performance.',
+                'description' => 'Explore advanced techniques in JavaScript for better code performance. illum expedita esse laborum cumque doloribus? Corporis aliquam veniam ratione ',
                 'publicDate' => '2024-07-04',
-                'image' => 'https://picsum.photos/200?random=4', // Image par défaut
+                'image' => '', // Image par défaut
                 'file' => null,
                 'status' => true,
                 'created_at' => now(),
@@ -39,8 +39,10 @@ class DatabaseSeeder extends Seeder
         
                 'name' => 'Alice Johnson',
                 'profession' => 'Graphic Designer',
-                'description' => 'Alice is an experienced graphic designer with a keen eye for detail.',
-                'image' => 'https://picsum.photos/200?random=1', // Image par défaut
+                'description' => 'Alice is an experienced graphic designer with  minus! Repellat i quas ad. 
+                 illum expedita esse laborum cumque doloribus? Corporis aliquam veniam ratione 
+                 at officia eius maxime ab autem assumenda. Assumenda distinctio omnis atque.',
+                'image' => '', // Image par défaut
                 'status' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -48,24 +50,37 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Collaborateurs::create([
-            'firstName' => 'Alice',
-            'lastName' => 'Johnson',
+            'nom' => 'Alice',
+            'prenoms' => 'Johnson',
             'profession' => 'Software Engineer',
-            'image' => 'https://picsum.photos/200?random=1', // Image par défaut
+            'image' => '', // Image par défaut
             'status' => true,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         \App\Models\notification::create([
-            'message' => 'New feature added! Check it out now.',
+            'name' => 'Proprio',
+            'email' => 'azertyuiop@example.com',
+            'subject' => 'Demande de stage',
+            'message' => 'New feature added! Check it out now. Lorem ipsum dolor sit, 
+            amet consectetur adipisicing elit. asi magni dolore, eius vel quam tempore 
+            dolorum molestias alias expedita qui labore quia? Illum ducimus harum sequi 
+            at officia eius maxime ab autem assumenda. Assumenda distinctio omnis atque.',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
 
         \App\Models\Services::create([
             'title' => 'UI/UX Design',
-            'description' => 'Designing user-friendly and aesthetically pleasing interfaces.',
+            'description' => 'Designing user-friendly and aesthetically pleasing interfaces. 
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum quo doloremque, 
+            ipsa facilis perferendis similique itaque beatae ab hic amet vel voluptatibus minus! Repellat 
+            ipsam dolorem ipsa, necessitatibus officia voluptas nihil expedita animi itaque blanditiis quas ad. Iste, maxime
+            . Explicabo, placeat magnam odit nihil veritatis aliquam ipsa harum dolorum labore dolore natus ad tempore animi quasi 
+            m eligendi omnis sapiente adipisci eveniet quasi magni dolore, eius vel quam tempore 
+            dolorum molestias alias expedita qui labore quia? Illum ducimus harum sequi at officia 
+            eius maxime ab autem assumenda. Assumenda distinctio omnis atque.',
             'status' => true,
             'created_at' => now(),
             'updated_at' => now(),
@@ -83,10 +98,23 @@ class DatabaseSeeder extends Seeder
             'firstName' => 'John',
             'lastName' => 'Doe',
             'age' => 30,
-            'description' => 'Experienced software developer.',
+            'description' => 'Experienced software developer. Lorem ipsum dolor sit, 
+            amet consectetur adipisicing elit. Laborum quo doloremque, ipsa 
+            facilis perferendis similique itaque beatae ab hic amet vel voluptatibus 
+            minus! Repellat ipsam dolorem ipsa, necessitatibus officia voluptas nihil 
+            expedita animi itaque blanditiis quas ad. Iste, maxime. Explicabo, placeat 
+            magnam odit nihil veritatis aliquam ipsa harum dolorum labore dolore natus 
+            ad tempore animi quasi in debitis reprehenderit rem possimus molestiae 
+            repellendus. Animi libero earum laudantium molestias amet illo dolorem officia, 
+            cum, facilis, error esse nostrum. Reprehenderit tenetur nam eveniet ipsa 
+            iure eum iusto illo omnis vitae earum nesciunt quidem, architecto sunt 
+            recusandae atque corporis nostrum ea autem. Nulla debitis asperiores excepturi b
+            eatae laborum eligendi omnis sapiente adipisci eveniet quasi magni dolore, 
+            eius vel quam tempore dolorum molestias alias expedita qui labore quia? 
+            Illum ducimus harum sequi at officia eius maxime ab autem assumenda. Assumenda distinctio omnis atque.',
             'diploma' => 'Bachelor of Science in Computer Science',
             'entreprise' => 'Tech Solutions Inc.',
-            'image' => 'https://picsum.photos/200',  // Image par défaut
+            'image' => '',  // Image par défaut
             'created_at' => now(),
             'updated_at' => now(),
         ]);

@@ -18,9 +18,9 @@ class ClientController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'profession' => 'required|string|max:255',
+            'profession' => 'required|string',
             'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:9048',
         ]);
 
         $imagePath = $request->file('image')->store('images', 'public');
@@ -41,9 +41,9 @@ class ClientController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'profession' => 'required|string|max:255',
+            'profession' => 'required|string',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:9048',
         ]);
 
         $imagePath = $client->image;

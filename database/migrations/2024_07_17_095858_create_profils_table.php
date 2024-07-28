@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->integer('age');
-            $table->string('description');
+            $table->longText('description');
             $table->string('diploma');
             $table->string('entreprise');
             $table->string('image');
